@@ -50,6 +50,34 @@ class ViewController: UIViewController {
         return button
     }()
 
+    private lazy var twitterButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "twitter")
+        button.setTitle("Twitter", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemBlue
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 20
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.setImage(image, for: .normal)
+        return button
+    }()
+
+    private lazy var facebookButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "facebook")
+        button.setTitle("Facebook", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemCyan
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 20
+        button.titleLabel?.textAlignment = .left
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.titleLabel?.textAlignment = .left
+        button.setImage(image, for: .normal)
+        return button
+    }()
+
 
     //MARK: - lifecycle
     override func viewDidLoad() {
@@ -62,10 +90,7 @@ class ViewController: UIViewController {
     //MARK: - Setup
     private func setupLayout() {
         imageView.snp.makeConstraints{
-            $0.top.equalTo(view)
-            $0.bottom.equalTo(view)
-            $0.leading.equalTo(view)
-            $0.trailing.equalTo(view)
+            $0.edges.equalTo(view).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
         loginTextField.snp.makeConstraints {
             $0.leading.equalTo(view).offset(100)
@@ -86,8 +111,30 @@ class ViewController: UIViewController {
         }
         forgotPasswordButton.snp.makeConstraints {
             $0.top.equalTo(loginButton).offset(40)
-            $0.leading.equalTo(view).offset(130)
-            $0.trailing.equalTo(view).offset(-130)
+            $0.leading.equalTo(view).offset(100)
+            $0.trailing.equalTo(view).offset(-100)
+        }
+        twitterButton.snp.makeConstraints {
+            $0.bottom.equalTo(view).offset(-100)
+            $0.leading.equalTo(view).offset(20)
+            $0.trailing.equalTo(view.snp.centerX).offset(-20)
+            $0.height.lessThanOrEqualTo(40)
+            $0.height.greaterThanOrEqualTo(40)
+
+        }
+        twitterButton.imageView?.snp.makeConstraints {
+            $0.trailing.equalTo(twitterButton.titleLabel?.snp.leading ?? 0).offset(-20)
+        }
+
+        facebookButton.snp.makeConstraints {
+            $0.bottom.equalTo(view).offset(-100)
+            $0.trailing.equalTo(view).offset(-20)
+            $0.leading.equalTo(view.snp.centerX).offset(20)
+            $0.height.lessThanOrEqualTo(40)
+            $0.height.greaterThanOrEqualTo(40)
+        }
+        facebookButton.imageView?.snp.makeConstraints {
+            $0.trailing.equalTo(facebookButton.titleLabel?.snp.leading ?? 0).offset(-20)
         }
     }
 
@@ -97,6 +144,8 @@ class ViewController: UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
         view.addSubview(forgotPasswordButton)
+        view.addSubview(facebookButton)
+        view.addSubview(twitterButton)
     }
 
     //MARK: - Action
