@@ -32,6 +32,24 @@ class ViewController: UIViewController {
         return textField
     }()
 
+    private lazy var loginButton: UIButton = {
+        let button = UIButton()
+        button.clipsToBounds = true
+        button.backgroundColor = .systemGreen
+        button.layer.cornerRadius = 10
+        button.setTitle("Login", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        return button
+    }()
+
+    private lazy var forgotPasswordButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Forgot your password?", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        return button
+    }()
+
 
     //MARK: - lifecycle
     override func viewDidLoad() {
@@ -61,12 +79,24 @@ class ViewController: UIViewController {
             $0.trailing.equalTo(view).offset(-100)
             $0.top.equalTo(loginTextField).offset(70)
         }
+        loginButton.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField).offset(90)
+            $0.leading.equalTo(view).offset(150)
+            $0.trailing.equalTo(view).offset(-150)
+        }
+        forgotPasswordButton.snp.makeConstraints {
+            $0.top.equalTo(loginButton).offset(40)
+            $0.leading.equalTo(view).offset(130)
+            $0.trailing.equalTo(view).offset(-130)
+        }
     }
 
     private func setupHierarchy() {
         view.addSubview(imageView)
         view.addSubview(loginTextField)
         view.addSubview(passwordTextField)
+        view.addSubview(loginButton)
+        view.addSubview(forgotPasswordButton)
     }
 
     //MARK: - Action
