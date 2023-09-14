@@ -78,6 +78,41 @@ class ViewController: UIViewController {
         return button
     }()
 
+    private lazy var lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.layer.cornerRadius = 1
+        return view
+    }()
+    private lazy var secondLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.layer.cornerRadius = 1
+        return view
+    }()
+
+    private lazy var anotherConnectLabel: UILabel = {
+        var label = UILabel()
+        label.text = "or connect with"
+        label.textColor = .lightGray
+        return label
+    }()
+
+    private lazy var singUpLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Don't have account?"
+        label.textColor = .lightGray
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
+    }()
+
+    private lazy var singUpButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Sing Up", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        return button
+    }()
 
     //MARK: - lifecycle
     override func viewDidLoad() {
@@ -136,6 +171,36 @@ class ViewController: UIViewController {
         facebookButton.imageView?.snp.makeConstraints {
             $0.trailing.equalTo(facebookButton.titleLabel?.snp.leading ?? 0).offset(-20)
         }
+
+        lineView.snp.makeConstraints {
+            $0.leading.equalTo(view).offset(30)
+            $0.trailing.equalTo(anotherConnectLabel.snp.leading).offset(-5)
+            $0.bottom.equalTo(twitterButton.snp.top).offset(-30)
+            $0.height.greaterThanOrEqualTo(1)
+        }
+        secondLineView.snp.makeConstraints {
+            $0.leading.equalTo(anotherConnectLabel.snp.trailing).offset(5)
+            $0.trailing.equalTo(view).offset(-30)
+            $0.bottom.equalTo(twitterButton.snp.top).offset(-30)
+            $0.height.greaterThanOrEqualTo(1)
+        }
+
+        anotherConnectLabel.snp.makeConstraints {
+            $0.centerY.equalTo(lineView.snp.centerY)
+            $0.centerX.equalTo(view)
+        }
+
+        singUpLabel.snp.makeConstraints {
+            $0.bottom.equalTo(view).offset(-40)
+            $0.leading.equalTo(view).offset(60)
+            $0.trailing.equalTo(singUpButton.snp.leading).offset(10)
+        }
+
+        singUpButton.snp.makeConstraints {
+
+            $0.trailing.equalTo(view).offset(-30)
+            $0.centerY.equalTo(singUpLabel.snp.centerY)
+        }
     }
 
     private func setupHierarchy() {
@@ -146,6 +211,11 @@ class ViewController: UIViewController {
         view.addSubview(forgotPasswordButton)
         view.addSubview(facebookButton)
         view.addSubview(twitterButton)
+        view.addSubview(lineView)
+        view.addSubview(anotherConnectLabel)
+        view.addSubview(secondLineView)
+        view.addSubview(singUpLabel)
+        view.addSubview(singUpButton)
     }
 
     //MARK: - Action
