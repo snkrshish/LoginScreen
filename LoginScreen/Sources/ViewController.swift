@@ -18,6 +18,9 @@ class ViewController: UIViewController {
         textField.font = .systemFont(ofSize: 14)
         textField.textAlignment = .left
         textField.backgroundColor = .white
+        if let icon = UIImage(systemName: "person.fill") {
+            textField.setLeftIcon(icon)
+        }
         return textField
     }()
 
@@ -29,6 +32,9 @@ class ViewController: UIViewController {
         textField.font = .systemFont(ofSize: 14)
         textField.textAlignment = .left
         textField.backgroundColor = .white
+        if let icon = UIImage(systemName: "lock") {
+            textField.setLeftIcon(icon)
+        }
         return textField
     }()
 
@@ -39,6 +45,12 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
         return button
     }()
 
@@ -60,6 +72,12 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 20
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.setImage(image, for: .normal)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
         return button
     }()
 
@@ -75,6 +93,12 @@ class ViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.titleLabel?.textAlignment = .left
         button.setImage(image, for: .normal)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
         return button
     }()
 
@@ -221,3 +245,15 @@ class ViewController: UIViewController {
     //MARK: - Action
 }
 
+    //MARK: - extension
+extension UITextField {
+    func setLeftIcon(_ image: UIImage) {
+        let iconView = UIImageView(frame: CGRect(x: 5, y: 3, width: 25, height: 23))
+        iconView.image = image
+        let iconContainerView: UIView = UIView(frame: CGRect(x: 20, y: 0, width: 30, height: 30))
+        iconContainerView.addSubview(iconView)
+        leftView = iconContainerView
+        leftViewMode = .always
+        iconView.tintColor = .darkGray
+    }
+}
